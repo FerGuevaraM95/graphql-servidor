@@ -46,4 +46,5 @@ type Mutation {
     #Nombre del resolver , Input con datos y el valor que retorna
     """ Te permite crear nuevos Clientes """
     crearCliente(input: ClienteInput) : Cliente
+    actualizarCliente(input: ClienteInput) : Cliente
 }
