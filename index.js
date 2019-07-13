@@ -1,11 +1,7 @@
 import express from 'express';
 // GraphQL
 import graphqlHTTP from 'express-graphql';
-import schema from './schema';
-// resolvers
-import resolvers from './resolvers'
-
-const root = resolvers;
+import { schema } from './data/schema';
 
 const app = express();
 
@@ -16,8 +12,6 @@ app.get('/', (req, res) => {
 app.use('/graphql', graphqlHTTP({
     // que schema va a utilizar
     schema,
-    // el resolver se pasa como rootValue
-    rootValue: root,
     // utilizar graphql
     graphiql: true
 }))
