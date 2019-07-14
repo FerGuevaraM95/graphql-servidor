@@ -21,6 +21,7 @@ enum TipoCliente {
     PREMIUM
 }
 type Query {
+    getClientes(limite: Int) : [Cliente]
     getCliente(id: String): Cliente
 }
 input PedidoInput {
