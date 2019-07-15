@@ -4,6 +4,7 @@ import ApolloClient from 'apollo-boost';
 
 // Importar componentes
 import Header from './componentes/Header';
+import Clientes from './componentes/Clientes';
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -17,6 +18,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Header />
+      <div className="container">
+      <Clientes />
+      </div>
     </ApolloProvider>
   );
 }
