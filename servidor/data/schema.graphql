@@ -15,6 +15,11 @@ type Pedido {
 type Email {
     email: String
 }
+type Producto {
+    nombre: String
+    precio: Int
+    stock: Int
+}
 """ Asigna la categoría del Cliente """
 enum TipoCliente {
     BASICO
@@ -43,11 +48,21 @@ input ClienteInput {
     tipo: TipoCliente!
     pedidos: [PedidoInput]
 }
+""" Campos para los productos nuevos """
+input ProductoInput {
+    id: ID
+    nombre: String!
+    precio: Int!
+    stock: Int!
+}
+
 """ Mutations para crear nuevos Clientes """
 type Mutation {
-    #Nombre del resolver , Input con datos y el valor que retorna
+    # Nombre del resolver , Input con datos y el valor que retorna
     """ Te permite crear nuevos Clientes """
     crearCliente(input: ClienteInput) : Cliente
     actualizarCliente(input: ClienteInput) : Cliente
     eliminarCliente(id: ID!) : String
+    # Productos
+    nuevoProducto(input: ProductoInput) : Producto
 }
