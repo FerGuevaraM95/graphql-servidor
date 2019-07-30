@@ -85,7 +85,13 @@ export const resolvers = {
                     if(error) rejects(error)
                     else resolve(nuevoProducto)
                 })
-            })
+            });
+        },
+        actualizarProducto : (root, {input}) => {
+            Productos.findOneAndUpdate({_id : input.id}, input, {new: true}, (error, producto) => {
+                if(error) rejects(error);
+                else resolve(producto)
+            });
         }
     }
 }
