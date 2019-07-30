@@ -3,8 +3,8 @@ import { Clientes } from './db';
 
 export const resolvers = {
     Query: {
-        getClientes: (root, {limite}) => {
-            return Clientes.find({}).limit(limite);
+        getClientes: (root, {limite, offset}) => {
+            return Clientes.find({}).limit(limite).skip(offset);
         },
         getCliente: (root, {id}) => {
             return new Promise((resolve, object) => {
@@ -14,6 +14,14 @@ export const resolvers = {
                 });
             });
         },
+        totalClientes : (root) => {
+            return new Promise((resolve, object) => {
+                Clientes.countDocuments({}, (error, count) => {
+                    if (error) rejects(error)
+                    else resolve(count)
+                })
+            })
+        }
     },
     Mutation: {
         crearCliente: (root, { input }) => {
