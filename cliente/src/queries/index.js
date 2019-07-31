@@ -27,3 +27,16 @@ query ConsultarCliente($id:ID) {
   }
 }
 `;
+
+// Productos
+
+export const OBTENER_PRODUCTOS = gql`
+query {
+  obtenerProductos {
+    id
+    nombre
+    precio
+    stock
+  }
+}
+`;
