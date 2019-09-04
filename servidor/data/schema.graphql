@@ -16,6 +16,7 @@ type Email {
     email: String
 }
 type Producto {
+    id: ID
     nombre: String
     precio: Int
     stock: Int

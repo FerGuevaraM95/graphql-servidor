@@ -22,10 +22,10 @@ export const resolvers = {
                 })
             })
         },
-        obtenerProductos: (root, {limite, offset}) => {
+        obtenerProductos : (root, {limite, offset}) => {
             return Productos.find({}).limit(limite).skip(offset);
         },
-        obtenerProducto: (root, {id}) => {
+        obtenerProducto : (root, {id}) => {
             return new Promise((resolve, object) => {
                 Productos.findById(id, (error, producto) => {
                     if(error) rejects (error)

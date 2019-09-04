@@ -23,7 +23,7 @@ const Clientes = mongoose.model('clientes', clientesSchema);
 const productosSchema = new mongoose.Schema({
     nombre: String,
     precio: Number,
-    Stock: Number
+    stock: Number
 });
 
 const Productos = mongoose.model('productos', productosSchema);
