@@ -88,10 +88,12 @@ export const resolvers = {
             });
         },
         actualizarProducto : (root, {input}) => {
-            Productos.findOneAndUpdate({_id : input.id}, input, {new: true}, (error, producto) => {
-                if(error) rejects(error);
-                else resolve(producto)
-            });
+            return new Promise((resolve, producto) => {
+                Productos.findOneAndUpdate({ _id: input.id }, input, { new: true }, (error, producto) => {
+                    if (error) rejects(error);
+                    else resolve(producto)
+                });
+            })
         },
         eliminarProducto : (root, {id}) => {
             return new Promise((resolve, object) => {
