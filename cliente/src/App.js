@@ -4,10 +4,10 @@ import ApolloClient, { InMemoryCache } from 'apollo-boost';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // Importar componentes
-import Header from './componentes/Header';
-import Clientes from './componentes/Clientes';
-import NuevoCliente from './componentes/NuevoCliente';
-import EditarCliente from './componentes/EditarCliente';
+import Header from './componentes/Layout/Header';
+import Clientes from './componentes/Clientes/Clientes';
+import NuevoCliente from './componentes/Clientes/NuevoCliente';
+import EditarCliente from './componentes/Clientes/EditarCliente';
 import Productos from './componentes/Productos/Productos';
 import NuevoProducto from './componentes/Productos/NuevoProducto';
 import EditarProducto from './componentes/Productos/EditarProducto';
@@ -36,7 +36,7 @@ function App() {
               <Route exact path="/cliente/editar/:id" component={EditarCliente}/>
               <Route exact path="/productos" component={Productos}/>
               <Route exact path="/producto/nuevo" component={NuevoProducto}/>
-              <Route exact path="/producto/editar/:id" component={EditarProducto}/>
+              <Route exact path="/productos/editar/:id" component={EditarProducto}/>
             </Switch>
           </div>
         </Fragment>

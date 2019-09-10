@@ -1,14 +1,32 @@
 import React, { Component, Fragment } from 'react'
-import { Query } from 'react-apollo';
+import { Query, Mutation } from 'react-apollo';
 import { Link } from 'react-router-dom';
 
 import { OBTENER_PRODUCTOS } from '../../queries';
+import { ELIMINAR_PRODUCTO } from '../../mutations';
+
+import Exito from '../Alertas/Exito';
 
 class Productos extends Component {
+
+    state = {
+        alerta: {
+            mostrar: false,
+            mensaje: ''
+        }
+    }
     render() {
+
+        const { alerta: { mostrar, mensaje } } = this.state;
+
+        const alerta = (mostrar) ? <Exito mensaje={mensaje} /> : '';
+
+        
         return(
             <Fragment>
                 <h1 className="text-center mb-5">Productos</h1>
+
+                { alerta }
 
                 <Query query={OBTENER_PRODUCTOS} pollInterval={1000} >
                 {({loading, error, data, startPolling, stopPolling}) => {
@@ -37,12 +55,42 @@ class Productos extends Component {
                                             <td>{item.precio}</td>
                                             <td>{item.stock}</td>
                                             <td>
-                                                <button
-                                                    type="button"
-                                                    className="btn btn-danger"
+                                                <Mutation 
+                                                    mutation={ELIMINAR_PRODUCTO}
+                                                    onCompleted={(data) => {
+                                                        this.setState({
+                                                            alerta: {
+                                                                mostrar: true,
+                                                                mensaje: data.eliminarProducto
+                                                            }
+                                                        }, () => {
+                                                            setTimeout(() => {
+                                                                this.setState({
+                                                                    alerta: {
+                                                                        mostrar: false,
+                                                                        mensaje: ''
+                                                                    }
+                                                                })
+                                                            }, 3000);
+                                                        })
+                                                    }}
                                                 >
-                                                    &times; Eliminar
-                                                </button>
+                                                    {eliminarProducto => (
+                                                        <button
+                                                            onClick={ () => {
+                                                                if(window.confirm('Seguro que deseas eliminar este producto')) {
+                                                                    eliminarProducto({
+                                                                        variables: { id }
+                                                                    })
+                                                                }
+                                                            } }
+                                                            type="button"
+                                                            className="btn btn-danger"
+                                                        >
+                                                            &times; Eliminar
+                                                        </button>
+                                                    )}
+                                                </Mutation>
                                             </td>
                                             <td>
                                                 <Link
