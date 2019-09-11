@@ -74,7 +74,7 @@ export const resolvers = {
             return new Promise((resolve, object) => {
                 Clientes.findOneAndDelete({ _id: id }, (error) => {
                     if (error) rejects(error)
-                    else resolve("Se eliminó correctamente")
+                    else resolve("El Cliente se eliminó Correctamente")
                 });
             });
         },
@@ -107,7 +107,7 @@ export const resolvers = {
             return new Promise((resolve, producto) => {
                 Productos.findOneAndDelete({ _id: id }, (error) => {
                     if (error) rejects(error);
-                    else resolve("Se eliminó correctamente")
+                    else resolve("El Producto se Eliminó Correctamente")
                 });
             });
         }
