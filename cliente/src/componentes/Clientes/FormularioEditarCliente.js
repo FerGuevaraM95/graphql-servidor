@@ -40,7 +40,7 @@ class FormularioEditarCliente extends Component {
                    <Mutation 
                         mutation={ACTUALIZAR_CLIENTE}
                         onCompleted={() => this.props.refetch().then(() => {
-                            this.props.history.push('/')
+                            this.props.history.push('/clientes')
                         })}
                     >
                         {actualizarCliente => (
@@ -171,8 +171,7 @@ class FormularioEditarCliente extends Component {
                                         <label>Tipo Cliente</label>  
                                         <select 
                                             className="form-control"
-                                            value={tipo}
-                                            defaultValue={nombre}
+                                            defaultValue={tipo}
                                             onChange={e => {
                                                 this.setState({
                                                     cliente: {
